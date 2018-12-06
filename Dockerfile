@@ -1,6 +1,8 @@
 FROM openjdk:8-alpine
 LABEL maintainer "Chris Wells <chris@cevanwells.com>"
 
+WORKDIR /app
+
 COPY bin/* /usr/local/bin/
 
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
