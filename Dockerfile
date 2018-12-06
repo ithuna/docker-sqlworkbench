@@ -1,7 +1,15 @@
 FROM openjdk:8-alpine
 LABEL maintainer "Chris Wells <chris@cevanwells.com>"
 
+RUN apk add --update \
+		curl \
+		ca-certificates \
+		unzip \
+	&& rm -rf /var/cache/apk/*
+
 WORKDIR /app
+
+RUN mkdir exports config sql
 
 COPY bin/* /usr/local/bin/
 
