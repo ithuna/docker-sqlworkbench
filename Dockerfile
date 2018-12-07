@@ -23,7 +23,7 @@ RUN curl -sSL http://central.maven.org/maven2/org/postgresql/postgresql/9.2-1003
 		 -o jdbc-postgresql.jar \
 	&& mv jdbc-postgresql.jar lib/
 
-# Install MySQL (mariadb) JDBC driver
+# Install MariaDB (mysql) JDBC driver
 RUN curl -sSL http://central.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/2.3.0/mariadb-java-client-2.3.0.jar \
 		 -o jdbc-mariadb.jar \
 	&& mv jdbc-mariadb.jar lib/
