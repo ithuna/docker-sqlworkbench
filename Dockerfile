@@ -11,7 +11,9 @@ ENV SQLWORKBENCH_VERSION=Build124
 ENV SQLWORKBENCH_SRC_URL="https://www.sql-workbench.eu/Workbench-${SQLWORKBENCH_VERSION}.zip"
 
 WORKDIR /app
-RUN mkdir exports config sql lib bin
+RUN mkdir exports config sql lib bin \
+    && mkdir -p /usr/local/share/sqlworkbench/config \
+                /usr/local/share/sqlworkbench/sql
 
 RUN curl -sSL "${SQLWORKBENCH_SRC_URL}" -o "sqlworkbench-${SQLWORKBENCH_VERSION}.zip" \
 	&& unzip -q "sqlworkbench-${SQLWORKBENCH_VERSION}.zip" -d /app/bin \
@@ -34,7 +36,8 @@ RUN curl -sSL https://github.com/Microsoft/mssql-jdbc/releases/download/v7.1.3/m
 	&& mv jdbc-mssql.jar lib/
 
 COPY bin/* /usr/local/bin/
-COPY config/* /app/config/
+COPY config/* /usr/local/share/sqlworkbench/config/
+COPY sql/* /usr/local/share/sqlworkbench/sql/
 
 RUN addgroup -S appworker \
 	&& adduser -D \
