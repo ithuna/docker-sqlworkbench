@@ -41,6 +41,9 @@ COPY bin/* /usr/local/bin/
 COPY config/* $SQLWB_SHARE_DIR/config/
 COPY sql/* $SQLWB_SHARE_DIR/sql/
 
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh \
+	&& chmod +x /usr/local/bin/docker-cmd.sh
+
 RUN addgroup -S appworker \
 	&& adduser -D \
 			   -S \
