@@ -52,4 +52,3 @@ RUN addgroup -S appworker \
 
 USER appworker
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
-CMD ["sh", "-c", "/usr/local/bin/docker-cmd.sh"]
