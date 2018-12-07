@@ -9,7 +9,6 @@ RUN apk add --update \
 
 ENV SQLWORKBENCH_VERSION=Build124
 ENV SQLWORKBENCH_SRC_URL="https://www.sql-workbench.eu/Workbench-${SQLWORKBENCH_VERSION}.zip"
-ENV POSTGRESQL_DRIVER_URL=http://central.maven.org/maven2/org/postgresql/postgresql/9.2-1003-jdbc4/postgresql-9.2-1003-jdbc4.jar
 
 WORKDIR /app
 RUN mkdir exports config sql lib bin
@@ -19,10 +18,23 @@ RUN curl -sSL "${SQLWORKBENCH_SRC_URL}" -o "sqlworkbench-${SQLWORKBENCH_VERSION}
 	&& chmod +x /app/bin/sqlwbconsole.sh \
 	&& rm -f "sqlworkbench-${SQLWORKBENCH_VERSION}.zip" 
 
-RUN curl -sSL "${POSTGRESQL_DRIVER_URL}" -o jdbc-postgresql_driver.jar \
-	&& mv jdbc-postgresql_driver.jar lib/
+# Install PostgreSQL JDBC driver
+RUN curl -sSL http://central.maven.org/maven2/org/postgresql/postgresql/9.2-1003-jdbc4/postgresql-9.2-1003-jdbc4.jar \
+		 -o jdbc-postgresql.jar \
+	&& mv jdbc-postgresql.jar lib/
+
+# Install MySQL (mariadb) JDBC driver
+RUN curl -sSL http://central.maven.org/maven2/org/mariadb/jdbc/mariadb-java-client/2.3.0/mariadb-java-client-2.3.0.jar \
+		 -o jdbc-mariadb.jar \
+	&& mv jdbc-mariadb.jar lib/
+
+# Install MSSQL JDBC driver
+RUN curl -sSL https://github.com/Microsoft/mssql-jdbc/releases/download/v7.1.3/mssql-jdbc-7.1.3.jre8-preview.jar \
+		 -o jdbc-mssql.jar \
+	&& mv jdbc-mssql.jar lib/
 
 COPY bin/* /usr/local/bin/
+COPY config/* /app/config/
 
 RUN addgroup -S appworker \
 	&& adduser -D \
