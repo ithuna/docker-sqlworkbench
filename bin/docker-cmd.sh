@@ -1,9 +1,8 @@
 #!/bin/sh
 set -e
 
-SQLWORKBENCH_ARGS='-jar /app/bin/sqlworkbench.jar -configDir=/app/config'
-JAVA_DIR='/usr/bin'
-PROFILE="${1}"
-SCRIPT="${2}"
+SQLWB_ARGS=-configDir=$SQLWB_APP_DIR/config
+PROFILE=$1
+SCRIPT=$2
 
-$JAVA_DIR/java $SQLWORKBENCH_ARGS -profile=$PROFILE -script="/app/sql/${SCRIPT}.sql" 2>&1
+/usr/local/bin/sqlwbconsole.sh $SQLWB_ARGS -profile=$PROFILE -script=$SQLWB_APP_DIR/sql/$SCRIPT.sql 2>&1

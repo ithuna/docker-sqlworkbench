@@ -296,7 +296,7 @@
      <object class="java.util.Collections" method="unmodifiableList">
       <object class="java.util.ArrayList">
        <void method="add">
-        <string>/app/lib/jdbc-mariadb.jar</string>
+        <string>/usr/local/lib/jdbc-mariadb.jar</string>
        </void>
       </object>
      </object>
@@ -374,7 +374,7 @@
      <object class="java.util.Collections" method="unmodifiableList">
       <object class="java.util.ArrayList">
        <void method="add">
-        <string>/app/lib/jdbc-mssql.jar</string>
+        <string>/usr/local/lib/jdbc-mssql.jar</string>
        </void>
       </object>
      </object>
@@ -534,7 +534,7 @@
      <object class="java.util.Collections" method="unmodifiableList">
       <object class="java.util.ArrayList">
        <void method="add">
-        <string>/app/lib/jdbc-postgresql.jar</string>
+        <string>/usr/local/lib/jdbc-postgresql.jar</string>
        </void>
       </object>
      </object>
