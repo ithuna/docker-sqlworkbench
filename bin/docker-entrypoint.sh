@@ -21,4 +21,4 @@ sync_dir()
 sync_dir $SQLWB_SHARE_DIR/config $SQLWB_APP_DIR/config
 sync_dir $SQLWB_SHARE_DIR/sql $SQLWB_APP_DIR/sql
 
-docker-cmd.sh $1 $2
+/usr/local/bin/docker-cmd.sh $@
